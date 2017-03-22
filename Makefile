@@ -2,7 +2,14 @@
 CPP := g++
 CPPFLAGS := -g -std=c++11 # -Wall
 
+#################################################################################
+########### Ensure these paths are set correctly for your environment ###########
+#################################################################################
 TTHBBLEPTONICDIR := /users/jwebster/tth/2.3.39.2/TTHbbLeptonic/TTHbbLeptonic
+DELPHESDIR := /users/jwebster/Delphes-3.3.0
+MGDIR := /users/jwebster/MG5/MG5_aMC_v2_3_3
+#################################################################################
+
 MYINCS := -I$(PWD) -I$(PWD)/$(notdir $(shell pwd)) -I$(TTHBBLEPTONICDIR)
 TTHBBLEPTONICEXTRAS := TopConfiguration/ConfigurationSettings.cxx $(TTHBBLEPTONICDIR)/Root/PairedSystem.cxx $(TTHBBLEPTONICDIR)/Root/MVAUtils.cxx $(TTHBBLEPTONICDIR)/Root/MVAVariables.cxx
 TTHBBLEPTONICOBJ := bin/ConfigurationSettings.o bin/PairedSystem.o bin/MVAUtils.o bin/MVAVariables.o
@@ -11,8 +18,8 @@ ROOTLIBS := `root-config --libs` -lRooFitCore -lRooFit -lMinuit -lRooStats -lCor
 ROOTLIBFLAGS := `root-config --ldflags`
 ROOTINCS := `root-config --cflags` 
 
-DELPHESLIBS := -L/users/jwebster/Delphes-3.3.0 -lDelphes
-DELPHESINCS := -I/users/jwebster/Delphes-3.3.0 -I/users/jwebster/MG5/MG5_aMC_v2_3_3/Template/NLO/MCatNLO/include
+DELPHESLIBS := -L$(DELPHESDIR) -lDelphes
+DELPHESINCS := -I$(DELPHESDIR) -I$(MGDIR)/Template/NLO/MCatNLO/include
 
 BUILD_OBJ := $(CPP) $(CPPFLAGS) $(MYINCS) $(ROOTINCS) $(DELPHESINCS)
 LINK_OBJ := $(CPP) -g $(ROOTLIBS) $(DELPHESLIBS) $(MYINCS) $(ROOTINCS) $(DELPHESINCS)

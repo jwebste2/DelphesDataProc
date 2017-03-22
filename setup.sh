@@ -5,8 +5,6 @@ export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
 export ALRB_localConfigDir=$HOME/localConfig
 echo "BASH : set up cvmfs ROOT"
 source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh --quiet
-#source ${ATLAS_LOCAL_ROOT_BASE}/packageSetups/atlasLocalROOTSetup.sh --rootVersion=5.34.19-x86_64-slc6-gcc47-opt --skipConfirm
-#source ${ATLAS_LOCAL_ROOT_BASE}/packageSetups/atlasLocalROOTSetup.sh --rootVersion=5.34.25-x86_64-slc6-gcc48-opt --skipConfirm
 source ${ATLAS_LOCAL_ROOT_BASE}/packageSetups/atlasLocalROOTSetup.sh --rootVer=6.04.14-x86_64-slc6-gcc49-opt --skipConfirm
 
 # Required for setting up Delphes libarary
@@ -34,15 +32,5 @@ export FONTCYAN='\033[01;36m'
 export FONTWHITE='\033[01;37m'
 export FONTBOLD='\033[1m'
 export FONTUNDERLINE='\033[4m'
-
-
-
-
-#
-#
-echo "BASH : adding some useful functions"
-#
-#
-
 
 echo "BASH : done."
