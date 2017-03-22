@@ -1,13 +1,13 @@
-#DelphesDataProc
+# DelphesDataProc
 
 ***
-##Summary
+## Summary
 This is a collection of tools used to process and clean Delphes ttH and ttbar events so they are ready to used for MVA studies. This code was used to produce to prepare data for the studies done in [arXiv:1610.03088](https://arxiv.org/abs/1610.03088).
 
-####Structure
+#### Structure
 This is a standard C++ package. The source code is in the [src](src/) directory. Header files are in the [DelphesDataProc](DelphesDataProc/) directory. Bash and python scripts are in the [scripts](scripts/) directory. Output from all scripts and executables should be directed to the [output](output/) directory.
 
-####Installation
+#### Installation
 Before compiling this code you need to first install Delphes, MadGraph, and TTHbbLeptonic. The following versions/tags have been found to work well:
 
 * [Delphes-3.3.0](https://github.com/delphes/delphes/releases/tag/3.3.0)
@@ -31,9 +31,9 @@ Once all of this is done you should be able to compile any executable in the [sr
 This will create an executable called "ProcessDataForTthVsTtbar" in the [run](run/) directory.
 
 ***
-##Typical Workflow
+## Typical Workflow
 
-####Step 1: Process MadGraph output with Delphes
+#### Step 1: Process MadGraph output with Delphes
 The C++ code in this package uses Delphes format ROOT files as input. Before compiling and running the C++ code you may need to process some MadGraph output using Delphes. This can be done using the scripts in [scripts/RunDelphes](scripts/RunDelphes/).
 
 First, be sure to set up your Delphes environment. This is easily done using the script provided by Delphes:
@@ -80,7 +80,7 @@ Then launch the jobs, as follows:
 
 The jobs can be monitoring using "condor_q"
 
-####Step 2: Process Delphes output and apply event selection
+#### Step 2: Process Delphes output and apply event selection
 
 Once you have generated Delphes output, then you can process the events and apply a selection using the C++ code. If you want to produce CSV and ROOT input for training an MVA to separate ttH signal from ttbar background, then please use [src/ProcessDataForTthVsTtbar.cpp](src/ProcessDataForTthVsTtbar.cpp), e.g.:
 
@@ -96,19 +96,19 @@ If you want to produce CSV input for training a ttbar reconstruction MVA, then p
 
 You can thread jobs to condor by following the "Step 1" instructions.
 
-####Step 3: Plot MVA performance
+#### Step 3: Plot MVA performance
 I added to this repository the script that I used to generate plots and tables from Marcus, Roberto, and Soo's MVA output. I put this here as a reference so it doesn't get lost. If you need to actually run it then let me know!
 
 ***
-##Git Refresher (for Terminal Work)
+## Git Refresher (for Terminal Work)
 
-####Clone the repository on your local machine:
+#### Clone the repository on your local machine:
     git clone https://github.com/jwebste2/DelphesDataProc.git DelphesDataProc
 
-####Basic Pulling:
+#### Basic Pulling:
     git pull
 
-####Basic Pushing:
+#### Basic Pushing:
     # To include changes to files that are already tracked
     git add -u
 
@@ -121,7 +121,7 @@ I added to this repository the script that I used to generate plots and tables f
     # Then push the commit
     git push
 
-####Merging your branch into master
+#### Merging your branch into master
     # Pull updates from master to your branch
     git pull
 
@@ -139,7 +139,7 @@ I added to this repository the script that I used to generate plots and tables f
     git rebase master
 
 
-####Checking Logs:
+#### Checking Logs:
     # Format ==> git log -NEntriesToPrint, e.g.
     git log -5
 
