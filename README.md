@@ -37,20 +37,24 @@ This will create an executable called "ProcessDataForTthVsTtbar" in the [run](ru
 The C++ code in this package uses Delphes format ROOT files as input. Before compiling and running the C++ code you may need to process some MadGraph output using Delphes. This can be done using the scripts in [scripts/RunDelphes](scripts/RunDelphes/).
 
 First, be sure to set up your Delphes environment. This is easily done using the script provided by Delphes:
+
     cd /your/path/to/Delphes-3.3.0
     . DelphesEnv.sh
 
 Next, copy the card file and Delphes run script from this git repository, e.g.:
+
     cp path/to/DelphesDataProc/scripts/RunDelphes/delphes_card_ATLAS.tcl cards/
     cp path/to/DelphesDataProc/scripts/RunDelphes/RUN_SINGLE_FILE.sh .
     chmod +x RUN_SINGLE_FILE.sh
 
 Edit RUN_SINGLE_FILE.sh to ensure the output dir near the top of the file makes sense. Then you can run over 1 file as follows:
+
     ./RUN_SINGLE_FILE.sh [Input tag_1_pythia_events.hep.gz path]
     # e.g.
     ./RUN_SINGLE_FILE.sh /cnfs/data1/users/ac.jahreda/ttbar_massdep/ttbar_01p_singlecore_100k_10_mass160_Feb23_111252/ttbar_01p/Events/run_01/tag_1_pythia_events.hep.gz
 
 If you are using the Argonne cluster (specifically atlas1.hep.anl.gov) then you can easily thread jobs to condor. First build a job submission file that looks like this:
+
     Universe     = vanilla
     Getenv       = True
     Requirements = (Machine != "atlas50.hep.anl.gov")
@@ -71,6 +75,7 @@ If you are using the Argonne cluster (specifically atlas1.hep.anl.gov) then you 
     ...
 
 Then launch the jobs, as follows:
+
     condor_submit [Path to submit file]
 
 The jobs can be monitoring using "condor_q"
@@ -78,12 +83,14 @@ The jobs can be monitoring using "condor_q"
 ####Step 2: Process Delphes output and apply event selection
 
 Once you have generated Delphes output, then you can process the events and apply a selection using the C++ code. If you want to produce CSV and ROOT input for training an MVA to separate ttH signal from ttbar background, then please use [src/ProcessDataForTthVsTtbar.cpp](src/ProcessDataForTthVsTtbar.cpp), e.g.:
+
     make ProcessDataForTthVsTtbar
     ./run/ProcessDataForTthVsTtbar ljet 0 0 100 0
 
 The above example will run over 1/100th of the input data (both signal and background). You can get a better understanding of each input argument by running the execuble with no arguments and then looking at the error message.
 
 If you want to produce CSV input for training a ttbar reconstruction MVA, then please use [src/ProcessDataForTtbarReco.cpp](src/ProcessDataForTtbarReco.cpp), e.g.:
+
     make ProcessDataForTtbarReco
     ./run/ProcessDataForTtbarReco 173 ljet none 4 4 100 0
 
